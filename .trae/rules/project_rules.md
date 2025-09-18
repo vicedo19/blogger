@@ -18,9 +18,30 @@
 - **Docstrings**: All classes and functions must have comprehensive docstrings
 - **Line Length**: Maximum 88 characters (Black formatter standard)
 - **Import Organization**: Use isort for consistent import ordering
+- **Environment Variables**: Use python-decouple for environment variable management with proper type casting
 - **Class Names**: PascalCase (e.g., `BlogPost`, `UserProfile`)
 - **Function Names**: snake_case (e.g., `create_blog_post`, `get_user_data`)
 - **Constants**: UPPER_SNAKE_CASE (e.g., `MAX_TITLE_LENGTH`, `DEFAULT_PAGE_SIZE`)
+
+#### Environment Variable Examples
+```python
+from decouple import config, Csv
+
+# Basic string configuration
+SECRET_KEY = config('SECRET_KEY')
+
+# Boolean with type casting
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+# Integer with type casting
+DATABASE_PORT = config('DATABASE_PORT', default=5432, cast=int)
+
+# CSV list with type casting
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost', cast=Csv())
+
+# With default values
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+```
 
 ### JavaScript/TypeScript Standards
 - **ESLint Configuration**: Follow Airbnb style guide with TypeScript extensions
@@ -121,8 +142,11 @@
 - **CSRF Protection**: Enable CSRF protection for all forms
 
 ### Environment Security
-- **Environment Variables**: Store all secrets in environment variables
-- **Secret Management**: Never commit secrets to version control
+- **Environment Variables**: Use python-decouple for secure environment variable management
+- **Type Safety**: Utilize python-decouple's type casting (cast=bool, cast=int, cast=Csv())
+- **Default Values**: Always provide sensible default values for non-critical settings
+- **Secret Management**: Never commit secrets to version control, use .env files locally
+- **Production Configuration**: Use environment-specific configuration management
 - **HTTPS Only**: All production traffic must use HTTPS
 - **Security Headers**: Implement proper security headers
 
@@ -159,6 +183,15 @@
 - **Generated Code**: Mark AI-generated code with appropriate comments
 - **Review Notes**: Document human review and modifications
 - **Learning Notes**: Document lessons learned from AI interactions
+
+### Migration Guidelines
+- **Environment Variable Migration**: When migrating from python-dotenv to python-decouple:
+  1. Remove python-dotenv from dependencies (Pipfile/requirements.txt)
+  2. Update imports: `from decouple import config, Csv`
+  3. Replace `os.getenv()` calls with `config()` calls
+  4. Add type casting where appropriate (cast=bool, cast=int, cast=Csv())
+  5. Provide sensible default values for non-critical settings
+  6. Test all environment variable configurations thoroughly
 
 ## 🚀 Deployment Guidelines
 
