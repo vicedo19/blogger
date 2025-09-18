@@ -5,9 +5,20 @@ name = "pypi"
 
 [packages]
 django = "*"
-python-dotenv = "*"
+djangorestframework = "*"
+psycopg2-binary = "*"
+supabase = "*"
+django-cors-headers = "*"
+python-decouple = "*"
+pillow = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-django = "*"
+black = "*"
+isort = "*"
+flake8 = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.13"
