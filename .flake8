@@ -1,0 +1,89 @@
+[flake8]
+# Maximum line length to match Black formatter
+max-line-length = 88
+
+# Ignore specific error codes
+extend-ignore = 
+    # E203: whitespace before ':' (conflicts with Black)
+    E203,
+    # W503: line break before binary operator (conflicts with Black)
+    W503,
+    # E501: line too long (handled by Black)
+    E501,
+    # F401: imported but unused (handled by isort in some cases)
+    # F403: 'from module import *' used; unable to detect undefined names
+    # F405: name may be undefined, or defined from star imports
+
+# Exclude directories and files
+exclude = 
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    env,
+    .env,
+    migrations,
+    .tox,
+    build,
+    dist,
+    *.egg-info,
+    .pytest_cache,
+    .coverage,
+    htmlcov,
+    .mypy_cache,
+    node_modules,
+    staticfiles,
+    media
+
+# File patterns to check
+filename = *.py
+
+# Enable specific checks
+select = 
+    # Pyflakes errors
+    F,
+    # Pycodestyle errors
+    E,
+    # Pycodestyle warnings  
+    W,
+    # McCabe complexity
+    C90,
+    # Naming conventions
+    N,
+    # Django-specific checks (if django-flake8 plugin is installed)
+    DJ,
+
+# Maximum cyclomatic complexity
+max-complexity = 10
+
+# Show source code for each error
+show-source = True
+
+# Show pep8 violation statistics
+statistics = True
+
+# Count errors and warnings
+count = True
+
+# Django-specific settings
+# Ignore Django model field names that don't follow PEP8
+ignore-names = 
+    setUp,
+    tearDown,
+    setUpClass,
+    tearDownClass,
+    setUpModule,
+    tearDownModule,
+
+# Per-file ignores (if needed)
+per-file-ignores =
+    # Django settings files can have longer lines and star imports
+    */settings/*.py:E501,F401,F403,F405
+    # Test files can have longer lines and unused imports
+    */tests/*.py:E501,F401
+    # Migration files are auto-generated
+    */migrations/*.py:E501,F401,F403,F405
+    # __init__.py files often have star imports
+    __init__.py:F401,F403,F405
+    # manage.py is Django boilerplate
+    manage.py:E501
