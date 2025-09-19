@@ -2,6 +2,7 @@
 
 ## 📋 Table of Contents
 - [Code Standards](#code-standards)
+- [Dependency Management](#dependency-management)
 - [AI Development Guidelines](#ai-development-guidelines)
 - [Git Workflow](#git-workflow)
 - [Testing Requirements](#testing-requirements)
@@ -58,6 +59,36 @@ EMAIL_HOST = config('EMAIL_HOST', default='localhost')
 - **Semantic Classes**: Use semantic class names for custom CSS
 - **Color Palette**: Stick to defined color palette in Tailwind config
 - **Responsive Design**: All components must be responsive across all breakpoints
+
+## 📦 Dependency Management
+
+### Just-in-Time Installation Approach
+- **Minimal Base**: Keep Pipfile minimal with only Django as the base dependency
+- **Install as Needed**: Install dependencies only when implementing specific features
+- **Feature-Driven Dependencies**: Each new feature should explicitly install its required dependencies
+- **Documentation**: Document why each dependency is needed when installing
+
+### Dependency Installation Process
+1. **Identify Need**: Determine specific dependency requirements for the feature being implemented
+2. **Install Explicitly**: Use `pipenv install <package>` for production dependencies
+3. **Development Dependencies**: Use `pipenv install <package> --dev` for development-only packages
+4. **Version Pinning**: Pin versions for critical dependencies to ensure consistency
+5. **Documentation**: Update project documentation with dependency rationale
+
+### Common Dependencies by Feature
+- **API Development**: `djangorestframework`, `django-cors-headers`
+- **Database**: `psycopg2-binary` (PostgreSQL), `supabase` (Supabase integration)
+- **Authentication**: `djangorestframework-simplejwt`, `pyjwt`
+- **Environment Management**: `python-decouple`
+- **Image Processing**: `pillow`
+- **Testing**: `pytest`, `pytest-django` (dev)
+- **Code Quality**: `black`, `isort`, `flake8`, `pre-commit` (dev)
+
+### Dependency Review Guidelines
+- **Regular Audits**: Review dependencies quarterly for security updates
+- **Unused Dependencies**: Remove dependencies that are no longer needed
+- **Alternative Evaluation**: Consider lighter alternatives when possible
+- **Security Scanning**: Use tools to scan for known vulnerabilities
 
 ## 🤖 AI Development Guidelines
 
