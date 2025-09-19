@@ -1,0 +1,273 @@
+# CodeRabbit AI Code Review Configuration
+# This configuration aligns with the Django Blog project rules and standards
+
+# Language and review settings
+language: en
+early_access: false
+enable_free_tier: true
+
+# Review configuration
+reviews:
+  # High-level review settings
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  high_level_summary_placeholder: "## Summary\n\nCodeRabbit has analyzed the changes in this pull request. Here's a high-level summary of the modifications and their impact on the Django blog application."
+  
+  # Poem and walkthrough settings
+  poem: true
+  review_status: true
+  collapse_empty_files: true
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - main
+      - develop
+      - staging
+
+# Path-based instructions for different file types
+path_instructions:
+  # Python/Django specific rules
+  - path: "**/*.py"
+    instructions: |
+      Review Python code with focus on:
+      - PEP 8 compliance and 88-character line limit (Black standard)
+      - Type hints for all function parameters and return values
+      - Comprehensive docstrings for classes and functions
+      - Proper use of python-decouple for environment variables with type casting
+      - Django best practices and security considerations
+      - Performance optimization opportunities (N+1 queries, caching)
+      - Test coverage and testing patterns
+      - Security vulnerabilities (SQL injection, XSS, CSRF)
+      - Proper error handling and logging
+
+  # Django settings and configuration
+  - path: "**/settings*.py"
+    instructions: |
+      Review Django settings with emphasis on:
+      - Security settings (SECRET_KEY, DEBUG, ALLOWED_HOSTS)
+      - Proper use of python-decouple for environment variable management
+      - Database configuration and connection pooling
+      - Cache configuration (Redis)
+      - Security headers and HTTPS configuration
+      - Email and static file configuration
+      - Third-party service integrations
+
+  # Django models
+  - path: "**/models.py"
+    instructions: |
+      Review Django models focusing on:
+      - Proper field types and constraints
+      - Database indexing for query optimization
+      - Model relationships and foreign keys
+      - Meta class configuration
+      - Custom managers and querysets
+      - Model validation and clean methods
+      - Performance considerations for large datasets
+
+  # Django views and APIs
+  - path: "**/views.py"
+    instructions: |
+      Review Django views with attention to:
+      - Proper authentication and authorization
+      - Input validation and sanitization
+      - Error handling and user feedback
+      - Performance optimization (pagination, caching)
+      - API design and RESTful principles
+      - Rate limiting implementation
+      - CORS configuration
+
+  # JavaScript/TypeScript files
+  - path: "**/*.{js,jsx,ts,tsx}"
+    instructions: |
+      Review JavaScript/TypeScript code for:
+      - ESLint Airbnb style guide compliance
+      - TypeScript strict mode compliance (no 'any' types)
+      - React component best practices
+      - Performance optimization (code splitting, lazy loading)
+      - Accessibility considerations
+      - Security vulnerabilities (XSS prevention)
+      - Proper error handling and user feedback
+      - Mobile-first responsive design principles
+
+  # CSS and styling files
+  - path: "**/*.{css,scss,sass}"
+    instructions: |
+      Review CSS/styling with focus on:
+      - Tailwind CSS usage and consistency
+      - Mobile-first responsive design
+      - Semantic class naming conventions
+      - Performance optimization (unused styles)
+      - Accessibility compliance
+      - Cross-browser compatibility
+      - Color palette adherence
+
+  # Test files
+  - path: "**/*test*.py"
+    instructions: |
+      Review Python test files for:
+      - Comprehensive test coverage (aim for 90%+)
+      - Test organization and naming conventions
+      - Proper use of fixtures and factories
+      - Mock usage and test isolation
+      - Performance test considerations
+      - Security test coverage
+      - Edge case and error condition testing
+
+  # Test files (JavaScript)
+  - path: "**/*.{test,spec}.{js,jsx,ts,tsx}"
+    instructions: |
+      Review JavaScript test files for:
+      - Jest and React Testing Library best practices
+      - Component testing strategies
+      - Mock implementation and cleanup
+      - Accessibility testing
+      - Performance testing considerations
+      - E2E test scenarios
+
+  # Docker files
+  - path: "**/Dockerfile*"
+    instructions: |
+      Review Docker configuration for:
+      - Multi-stage build optimization
+      - Security best practices (non-root user, minimal base images)
+      - Layer caching optimization
+      - Proper environment variable handling
+      - Health check implementation
+      - Production readiness
+
+  # Docker Compose files
+  - path: "**/docker-compose*.yml"
+    instructions: |
+      Review Docker Compose configuration for:
+      - Service dependencies and health checks
+      - Network and volume configuration
+      - Environment variable management
+      - Resource limits and constraints
+      - Production vs development configurations
+      - Security considerations
+
+  # CI/CD configuration
+  - path: "**/.github/workflows/*.yml"
+    instructions: |
+      Review GitHub Actions workflows for:
+      - Comprehensive testing pipeline
+      - Security scanning integration
+      - Deployment automation
+      - Proper secret management
+      - Performance testing inclusion
+      - Notification and monitoring setup
+
+  # Environment and configuration files
+  - path: "**/.env*"
+    instructions: |
+      Review environment files for:
+      - No sensitive data committed to repository
+      - Comprehensive variable documentation
+      - Proper default values
+      - Production vs development configurations
+      - Security settings compliance
+
+  # Requirements and dependencies
+  - path: "**/Pipfile"
+    instructions: |
+      Review Python dependencies for:
+      - Security vulnerabilities in packages
+      - Version pinning strategies
+      - Development vs production dependencies
+      - Compatibility with Python version requirements
+      - License compliance
+
+  # Package.json files
+  - path: "**/package.json"
+    instructions: |
+      Review Node.js dependencies for:
+      - Security vulnerabilities
+      - Version compatibility
+      - Bundle size impact
+      - Development vs production dependencies
+      - Script optimization
+
+  # Documentation files
+  - path: "**/*.md"
+    instructions: |
+      Review documentation for:
+      - Clarity and completeness
+      - Code example accuracy
+      - Installation and setup instructions
+      - API documentation completeness
+      - Contribution guidelines
+      - Security considerations
+
+# Chat configuration
+chat:
+  auto_reply: true
+
+# Knowledge base and learning
+knowledge_base:
+  # Django-specific knowledge
+  learnings:
+    - "This project uses python-decouple for environment variable management with type casting"
+    - "Code coverage target is 90% minimum"
+    - "API response time target is under 200ms for 95% of requests"
+    - "All code must follow PEP 8 with 88-character line limit"
+    - "TypeScript strict mode is enforced with no 'any' types allowed"
+    - "Mobile-first responsive design is required"
+    - "All AI-generated code must be marked and reviewed"
+
+# Review focus areas
+focus_areas:
+  - security
+  - performance
+  - maintainability
+  - testing
+  - documentation
+  - accessibility
+  - best_practices
+
+# Ignore patterns for review
+ignore:
+  - "**/__pycache__/**"
+  - "**/node_modules/**"
+  - "**/venv/**"
+  - "**/env/**"
+  - "**/.git/**"
+  - "**/migrations/**"
+  - "**/staticfiles/**"
+  - "**/media/**"
+  - "**/*.pyc"
+  - "**/*.pyo"
+  - "**/*.log"
+  - "**/coverage/**"
+  - "**/.coverage"
+  - "**/htmlcov/**"
+  - "**/.pytest_cache/**"
+  - "**/.mypy_cache/**"
+  - "**/dist/**"
+  - "**/build/**"
+
+# Custom rules for this project
+custom_rules:
+  - name: "Environment Variable Usage"
+    pattern: "os\\.getenv|os\\.environ"
+    message: "Use python-decouple's config() instead of os.getenv() for environment variables"
+    severity: "warning"
+    
+  - name: "Type Hints Required"
+    pattern: "def\\s+\\w+\\([^)]*\\)\\s*:"
+    message: "Add type hints to function parameters and return values"
+    severity: "info"
+    
+  - name: "AI Generated Code"
+    pattern: "# AI-generated|# Generated by AI"
+    message: "AI-generated code detected - ensure human review is completed"
+    severity: "info"
+
+# Integration settings
+integrations:
+  github:
+    enabled: true
+    auto_review_enabled: true
+    review_on_push: true
+    review_on_pr: true
