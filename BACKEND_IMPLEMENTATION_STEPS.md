@@ -180,61 +180,52 @@ class Comment(models.Model):
 
 ---
 
-### 📋 Step 3: Implement User Authentication System
+### 📋 Step 3: Implement Basic User Authentication System
 **Status**: PENDING
 **Priority**: High
-**Estimated Time**: 3-4 hours
+**Estimated Time**: 1-2 hours
 
 #### Objectives:
-Implement a robust user authentication system with custom User model, profile management, and proper security measures.
+Implement a simple, essential user authentication system using Django's built-in authentication with minimal customization for blog functionality.
 
 #### Components to Implement:
 
-##### 1. Custom User Model
-```python
-class CustomUser(AbstractUser):
-    email = models.EmailField(unique=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    is_verified = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
-```
+##### 1. Use Django's Built-in User Model
+- Leverage Django's default User model (no custom model needed)
+- Use username-based authentication (standard Django approach)
+- Add basic user registration and login functionality
 
-##### 2. User Profile Model
+##### 2. Simple User Profile Extension (Optional)
 ```python
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    bio = models.TextField(max_length=500, blank=True)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
-    website = models.URLField(blank=True)
-    location = models.CharField(max_length=100, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-    social_links = models.JSONField(default=dict, blank=True)
+    bio = models.TextField(max_length=300, blank=True)
+    
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
 ```
 
-#### Tasks:
-- [ ] Create custom User model extending AbstractUser
-- [ ] Implement UserProfile model with one-to-one relationship
-- [ ] Create user registration and login views
-- [ ] Implement email verification system
-- [ ] Add password reset functionality
-- [ ] Create user profile management views
-- [ ] Implement JWT token authentication
-- [ ] Add user permissions and groups
-- [ ] Write comprehensive authentication tests
+#### Essential Tasks:
+- [ ] Create basic user registration view/form
+- [ ] Create user login/logout views
+- [ ] Add simple user profile model (optional)
+- [ ] Configure authentication URLs
+- [ ] Add basic authentication templates
+- [ ] Test user registration and login flow
 
-#### Security Features:
-- Email-based authentication
-- Strong password requirements
+#### Simplified Security Features:
+- Django's built-in session authentication
+- Basic password validation (Django defaults)
+- CSRF protection (Django built-in)
+- Login required decorators for protected views
+
+#### What We're Skipping (Can Add Later):
+- Custom User model
 - Email verification
-- JWT token management
-- Rate limiting on auth endpoints
-- CSRF protection
-- Secure password reset flow
+- JWT tokens
+- Advanced user profiles
+- Password reset via email
+- Social authentication
 
 ---
 
