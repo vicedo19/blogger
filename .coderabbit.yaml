@@ -2,7 +2,7 @@
 # This configuration aligns with the Django Blog project rules and standards
 
 # Language and review settings
-language: en
+language: en-US
 early_access: false
 enable_free_tier: true
 
