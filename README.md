@@ -6,7 +6,8 @@ A modern blogging platform built with Django and designed for scalability and pe
 
 ### Backend
 - **Django 5.2.6** - Python web framework
-- **Django REST Framework** - API development (to be added)
+- **Django REST Framework** - API development
+- **FastAPI** - Interactive API documentation and testing
 - **Python 3.x** - Programming language
 
 ### Database
@@ -355,4 +356,5 @@ Include:
 - [React Documentation](https://react.dev/)
 - [Deployment Guide](https://docs.djangoproject.com/en/5.2/howto/deployment/)
 - [OpenAPI Specification](https://swagger.io/specification/)
+- [FastAPI Integration Strategy](./FASTAPI_INTEGRATION.md) - Detailed documentation on FastAPI integration
 - [Django REST Framework](https://www.django-rest-framework.org/)
