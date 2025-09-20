@@ -12,6 +12,10 @@ django-cors-headers = "*"
 python-decouple = "*"
 pillow = "*"
 mysqlclient = "*"
+django-filter = "*"
+fastapi = "*"
+uvicorn = "*"
+pydantic = "*"
 
 [dev-packages]
 pytest = "*"
