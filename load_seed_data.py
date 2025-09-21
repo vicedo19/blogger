@@ -14,7 +14,7 @@ from datetime import datetime
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog.settings')
 django.setup()
 
-from blog_app.models import PostStatus, Category, Tag, Post
+from content.models import PostStatus, Category, Tag, Post
 from django.contrib.auth.models import User
 
 def parse_sql_file(filename):
