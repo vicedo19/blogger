@@ -44,10 +44,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     # Custom apps
-    'accounts',
-    'blog_app',
-    'comments',
     'media',
+    'content',  # Consolidated content models
     'api_docs',  # FastAPI documentation app
 ]
 
