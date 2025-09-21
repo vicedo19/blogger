@@ -13,9 +13,11 @@ python-decouple = "*"
 pillow = "*"
 mysqlclient = "*"
 django-filter = "*"
+requests = "*"
+pydantic = "*"
+email-validator = "*"
 fastapi = "*"
 uvicorn = "*"
-pydantic = "*"
 
 [dev-packages]
 pytest = "*"
