@@ -21,8 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('', include('blog_app.urls')),  # Homepage and blog posts
+    # Note: Old app URLs removed after model consolidation to content app
+    # All functionality now handled through content app and admin interface
 ]
 
 # Serve media files during development
