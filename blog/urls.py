@@ -21,6 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Content app API endpoints
+    path('', include('content.urls')),
     # Note: Old app URLs removed after model consolidation to content app
     # All functionality now handled through content app and admin interface
 ]
