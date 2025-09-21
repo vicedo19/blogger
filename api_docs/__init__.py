@@ -1,6 +1,9 @@
 """
-API Documentation package for the Blog application.
+API Documentation Package for Django Blog Platform.
 
-This package contains FastAPI-based API documentation using Swagger UI
-to provide comprehensive documentation for the Django REST Framework endpoints.
+This package contains FastAPI-based documentation for the Django REST API,
+providing comprehensive Swagger UI documentation with proper schemas and examples.
 """
+
+__version__ = "1.0.0"
+__author__ = "Blog API Team"
